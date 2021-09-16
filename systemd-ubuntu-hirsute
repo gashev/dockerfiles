@@ -1,0 +1,8 @@
+FROM ubuntu:hirsute
+RUN apt -y update && apt -y install systemd
+RUN rm -f /lib/systemd/system/sysinit.target.wants/*; \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*;
+VOLUME [ "/sys/fs/cgroup" ]
+CMD ["/lib/systemd/systemd"]

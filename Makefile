@@ -5,3 +5,4 @@ all:
 	podman build -f systemd-python3-debian-11 -t localhost/systemd-python3:debian-11
 	podman build -f systemd-fedora-34 -t localhost/systemd:fedora-34
 	podman build -f systemd-ubuntu-focal -t localhost/systemd:ubuntu-focal
+	podman build -f systemd-ubuntu-hirsute -t localhost/systemd:ubuntu-hirsute
