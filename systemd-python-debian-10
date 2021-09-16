@@ -1,0 +1,2 @@
+FROM localhost/systemd:debian-10
+RUN apt -y install python-minimal
