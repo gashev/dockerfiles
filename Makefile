@@ -8,3 +8,4 @@ all:
 	podman build -f systemd-fedora-34 -t localhost/systemd:fedora-34
 	podman build -f systemd-ubuntu-focal -t localhost/systemd:ubuntu-focal
 	podman build -f systemd-ubuntu-hirsute -t localhost/systemd:ubuntu-hirsute
+	podman build -f bind-9.17.19 -t localhost/bind-9.17.19
