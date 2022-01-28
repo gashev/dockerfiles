@@ -1,0 +1,31 @@
+FROM debian:11.1 as build
+RUN apt update 
+RUN apt -y upgrade
+
+RUN apt -y install \
+	wget \
+	xz-utils \
+	gcc \
+	pkg-config \
+	libuv1-dev \
+	libnghttp2-dev \
+	libssl-dev \
+	libcap-dev \
+	libjemalloc-dev \
+	make \
+	file
+
+RUN mkdir /opt/src
+WORKDIR /opt/src
+RUN wget https://downloads.isc.org/isc/bind9/9.18.0/bind-9.18.0.tar.xz
+RUN tar xvvf bind-9.18.0.tar.xz
+WORKDIR /opt/src/bind-9.18.0
+RUN ./configure --prefix=/opt/bind --enable-full-report
+RUN make
+RUN make install
+
+FROM debian:11.1
+RUN apt update
+RUN apt -y upgrade
+RUN apt -y install libjemalloc2 libuv1 libnghttp2-14 libcap2
+COPY --from=build /opt/bind /opt/bind
